@@ -1,5 +1,6 @@
-from app import app, attributes_taxonomy, dictionary_taxonomy, source
+from app import app, attributes_taxonomy, dictionary_taxonomy
 from flask import jsonify, abort, make_response, request
+from app.models import User
 
 values_type = ["Boolean", "Character", "Byte", "Integer",
                "Long", "Double", "String", "Enum", "ABoolean",
@@ -10,7 +11,9 @@ values_type = ["Boolean", "Character", "Byte", "Integer",
 def encode_data(user):
     coded_data = dict()
     for key, value in user.items():
-        if (key == "id"):
+        if (key == "_sa_instance_state"):
+            continue
+        elif (key == "id"):
             coded_data["id"] = value
         else:
             if not ("attrs" in coded_data.keys()):
@@ -31,13 +34,22 @@ def encode_data(user):
     return coded_data
 
 
+# @app.route('/fakeDMP/api/v1.0/users', methods=['GET'])
+# def get_user_info():
+#     users = source[source["id"] == request.args.get("id")].to_dict(orient='records')
+#     if (len(users) == 0):
+#         abort(404)
+#
+#     coded_data = encode_data(users[0])
+#     return jsonify(coded_data)
+
 @app.route('/fakeDMP/api/v1.0/users', methods=['GET'])
 def get_user_info():
-    users = source[source["id"] == request.args.get("id")].to_dict(orient='records')
-    if (len(users) == 0):
+    user = User.query.get(request.args.get("id"))
+    if (user == None):
         abort(404)
 
-    coded_data = encode_data(users[0])
+    coded_data = encode_data(vars(user))
     return jsonify(coded_data)
 
 
