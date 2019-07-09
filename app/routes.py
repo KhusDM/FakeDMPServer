@@ -1,6 +1,6 @@
 from app import app
 from api import attributes_taxonomy, dictionary_taxonomy
-from flask import jsonify, abort, make_response, request
+from flask import jsonify, abort, make_response, send_file, request
 from app.models import User
 
 values_type = ["Boolean", "Character", "Byte", "Integer",
@@ -53,6 +53,11 @@ def get_user_info():
 
     coded_data = encode_data(vars(user))
     return jsonify(coded_data)
+
+
+@app.route('/fakeDMP/api/v1.0/pixel.gif', methods=['GET'])
+def get_pixel():
+    return send_file("images/pixel.gif", mimetype="image/gif")
 
 
 @app.errorhandler(404)

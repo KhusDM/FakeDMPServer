@@ -1,4 +1,5 @@
 import pandas as pd
+import math
 import uuid
 from random import randint
 from collections import defaultdict
@@ -70,7 +71,8 @@ dictionary_taxonomy = defaultdict(lambda: defaultdict())
 for sheet in excel_book.sheet_names[7:]:
     data = excel_book.parse(sheet_name=sheet, index=False, header=2)
     for i, line in data.iterrows():
-        dictionary_taxonomy[sheet][line.ID] = line.Description
+        if not (math.isnan(line.ID)):
+            dictionary_taxonomy[sheet][int(line.ID)] = line.Description
 
 if (len(User.query.all()) == 0):
     generate_data(100)
