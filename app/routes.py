@@ -1,4 +1,5 @@
-from app import app, attributes_taxonomy, dictionary_taxonomy
+from app import app
+from api import attributes_taxonomy, dictionary_taxonomy
 from flask import jsonify, abort, make_response, request
 from app.models import User
 
@@ -45,7 +46,8 @@ def encode_data(user):
 
 @app.route('/fakeDMP/api/v1.0/users', methods=['GET'])
 def get_user_info():
-    user = User.query.get(request.args.get("id"))
+    # user = User.query.get(request.args.get("id"))
+    user = User.query.get("efb0112f-9cc1-4c58-9bb2-30b96f1abd37")
     if (user == None):
         abort(404)
 
