@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 609abbac84b1
+Revision ID: 5c98e013b1dd
 Revises: 
-Create Date: 2019-07-09 12:08:16.381911
+Create Date: 2019-07-10 10:07:17.715550
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '609abbac84b1'
+revision = '5c98e013b1dd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,13 +25,13 @@ def upgrade():
     sa.Column('Страна проживания', sa.String(length=200), nullable=True),
     sa.Column('Профессия', sa.String(length=200), nullable=True),
     sa.Column('Категория занимаемой должности', sa.String(length=200), nullable=True),
-    sa.Column('Средний остаток по всем счетам за последние 3 месяца', sa.Integer(), nullable=True),
+    sa.Column('Ср.ост. по всем сч. за последн. 3 мес.', sa.Integer(), nullable=True),
     sa.Column('Семейное положение', sa.String(length=200), nullable=True),
     sa.Column('Дети', sa.String(length=200), nullable=True),
-    sa.Column('Наличие жилья определенного типа', sa.String(length=200), nullable=True),
+    sa.Column('Наличие жилья опред. типа', sa.String(length=200), nullable=True),
     sa.Column('Наличие хобби', sa.String(length=200), nullable=True),
-    sa.Column('Владелец потребительской электроники определенного типа', sa.String(length=200), nullable=True),
-    sa.Column('Интерес к потребительской электронике определенного типа', sa.String(length=200), nullable=True),
+    sa.Column('Владелец потреб. электрон.', sa.String(length=200), nullable=True),
+    sa.Column('Интерес к потреб. электрон.', sa.String(length=200), nullable=True),
     sa.Column('Наличие автомобиля', sa.String(length=200), nullable=True),
     sa.Column('Владелец страхового продукта', sa.String(length=200), nullable=True),
     sa.Column('Интерес к страховому продукту', sa.String(length=200), nullable=True),
